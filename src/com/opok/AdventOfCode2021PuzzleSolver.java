@@ -5,78 +5,40 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AdventOfCode2021PuzzleSolver {
     private static String inputFileName;
-    private static String task;
+    private static String puzzleId;
 
     public static void main(String[] args) throws IOException {
         parseArguments(args);
-
         ArrayList<String> data = loadData();
+        PuzzleSolver solver = createPuzzleSolver(puzzleId);
+        solver.solve(data);
+    }
 
+    private static PuzzleSolver createPuzzleSolver(String task) {
         switch (task) {
-            case "1a" -> doTask1a(data);
-            case "1b" -> doTask1b(data);
-            case "2a" -> doTask2a(data);
-            case "2b" -> doTask2b(data);
-        }
-    }
-
-    private static void doTask2a(ArrayList<String> data) {
-        // commands: forward, up, down
-        int x=0, dep=0;
-        for (String s : data) {
-            SubmarineControlCommand c = new SubmarineControlCommand(s);
-
-            switch (c.getCommand()) {
-                case down -> dep += c.getValue();
-                case forward -> x += c.getValue();
-                case up -> dep -= c.getValue();
+            case "1a" -> {
+                return new Puzzle1a();
             }
-        }
-        System.out.println("x=" + x + " dep=" + dep + " x*dep=" + x*dep);
-    }
-
-    private static void doTask2b(ArrayList<String> data) {
-        // commands: forward, up, down
-        int x=0, aim=0, depth=0;
-        for (String s : data) {
-            SubmarineControlCommand c = new SubmarineControlCommand(s);
-
-            switch (c.getCommand()) {
-                case down -> aim += c.getValue();
-                case forward -> {
-                    x += c.getValue();
-                    depth += c.getValue() * aim;
-                }
-                case up -> aim -= c.getValue();
+            case "1b" -> {
+                return new Puzzle1b();
             }
-        }
-        System.out.println("x=" + x + " dep=" + depth + " x*dep=" + x*depth);
-    }
-
-    private static void doTask1a(ArrayList<String> data) {
-        int count = 0;
-        for (int i=0 ; i+1 < data.size() ; i++) {
-            if(Integer.parseInt(data.get(i)) < Integer.parseInt(data.get(i+1))) {
-                count++;
+            case "2a" -> {
+                return new Puzzle2a();
             }
-        }
-        System.out.println("Count of increasing deltas: " + count);
-    }
-
-    private static void doTask1b(ArrayList<String> data) {
-        int count = 0;
-        for (int i=0 ; i+3 < data.size() ; i++) {
-            int x1 = Arrays.stream(data.stream().mapToInt(Integer::parseInt).toArray(), i, i+3).sum();
-            int x2 = Arrays.stream(data.stream().mapToInt(Integer::parseInt).toArray(), i+1, i+4).sum();
-            if(x1 < x2) {
-                count++;
+            case "2b" -> {
+                return new Puzzle2b();
             }
+            case "3a" -> {
+                return new Puzzle3a();
+            }
+            case "3b" -> {
+                return new Puzzle3b();
+            }
+            default -> throw new UnsupportedOperationException();
         }
-        System.out.println("Count of increasing deltas of triples: " + count);
     }
 
     private static ArrayList<String> loadData() throws IOException {
@@ -98,10 +60,10 @@ public class AdventOfCode2021PuzzleSolver {
 
     private static void parseArguments(String[] args) {
         if (args.length != 2) {
-            throw new IllegalArgumentException("Usage: taskNo inputFile");
+            throw new IllegalArgumentException("Usage: puzzleNumber inputFile");
         }
 
-        task = args[0];
+        puzzleId = args[0];
         inputFileName = args[1];
     }
 
