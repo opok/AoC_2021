@@ -1,4 +1,6 @@
-package com.opok;
+package com.opok.aoc2021;
+
+import com.opok.aoc2021.puzzle2.SubmarineControlCommand;
 
 import java.util.ArrayList;
 

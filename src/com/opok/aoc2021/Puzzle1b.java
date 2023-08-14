@@ -1,4 +1,4 @@
-package com.opok;
+package com.opok.aoc2021;
 
 import java.util.ArrayList;
 import java.util.Arrays;

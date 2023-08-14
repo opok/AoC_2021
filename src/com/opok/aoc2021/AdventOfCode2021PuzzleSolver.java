@@ -1,4 +1,4 @@
-package com.opok;
+package com.opok.aoc2021;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -36,6 +36,12 @@ public class AdventOfCode2021PuzzleSolver {
             }
             case "3b" -> {
                 return new Puzzle3b();
+            }
+            case "4a" -> {
+                return new Puzzle4a();
+            }
+            case "4b" -> {
+                return new Puzzle4b();
             }
             default -> throw new UnsupportedOperationException();
         }

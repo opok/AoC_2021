@@ -1,4 +1,4 @@
-package com.opok;
+package com.opok.aoc2021.puzzle2;
 
 public class SubmarineControlCommand {
     private final COMMAND c;
