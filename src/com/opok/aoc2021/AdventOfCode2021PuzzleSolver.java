@@ -43,6 +43,9 @@ public class AdventOfCode2021PuzzleSolver {
             case "4b" -> {
                 return new Puzzle4b();
             }
+            case "5a" -> {
+                return new Puzzle5a();
+            }
             default -> throw new UnsupportedOperationException();
         }
     }
