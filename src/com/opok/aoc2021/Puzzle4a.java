@@ -5,7 +5,12 @@ import com.opok.aoc2021.puzzle4.BingoBoard;
 import java.util.ArrayList;
 import java.util.List;
 
-// bingo game
+// **************************
+//
+//   BINGO GAME
+//
+// find board that wins first
+// **************************
 public class Puzzle4a implements PuzzleSolver {
 
     ArrayList<BingoBoard> boards = new ArrayList<>();

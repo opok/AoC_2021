@@ -6,6 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// *****************************
+//
+//   BINGO GAME 2
+//
+// find board that guarantees
+// victory for oponent
+// *****************************
 public class Puzzle4b extends Puzzle4a {
         
     public void solve(ArrayList<String> data) {

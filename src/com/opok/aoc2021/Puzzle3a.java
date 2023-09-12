@@ -4,21 +4,23 @@ import java.util.ArrayList;
 
 public class Puzzle3a implements PuzzleSolver {
 
+    static final int COLUMN_COUNT = 12;
+
     @Override
     public void solve(ArrayList<String> data) {
-        int[] countOf1 = new int[12];
+        int[] countsOf1s = new int[COLUMN_COUNT];
         for (String s : data) {
-            for (int i=0 ; i<12 ; i++) {
-                if ("1".equals(Character.toString(s.charAt(i)))) {
-                    countOf1[i] = countOf1[i] + 1;
+            for (int col=0 ; col<COLUMN_COUNT ; col++) {
+                if ("1".equals(Character.toString(s.charAt(col)))) {
+                    countsOf1s[col] = countsOf1s[col] + 1;
                 }
             }
         }
 
         StringBuilder gamma = new StringBuilder();
         StringBuilder epsilon = new StringBuilder();
-        for (int count : countOf1) {
-            if (count > data.size()*0.5) { // at this position most frequent are "1"
+        for (int countOf1InColumn : countsOf1s) {
+            if (countOf1InColumn > data.size()*0.5) { // at this position most frequent are "1"
                 gamma.append(1);
                 epsilon.append(0);
             } else { // most frequent are "0"

@@ -8,6 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// *********************************
+//
+//    HOT SPRINGS 1
+//
+// only horizontal or vertical lines
+// *********************************
 public class Puzzle5a implements PuzzleSolver {
         
     public void solve(ArrayList<String> data) {
@@ -22,14 +28,16 @@ public class Puzzle5a implements PuzzleSolver {
 
         long result = map.values().stream().filter(integer -> integer>=2).count();
         System.out.println("Number of places on map where at least 2 lines cross is " + result);
-
     }
 
-    private List<Line> parseLines(ArrayList<String> data) {
-        return data.stream().map(s -> parseLine(s)).toList();
+    List<Line> parseLines(ArrayList<String> data) {
+        return data.stream()
+                .map(s -> parseLine(s))
+                .filter(line -> line.isVertical()||line.isHorizontal()) // filter out diagonal lines
+                .toList();
     }
 
-    private Line parseLine(String inputStr) {
+    Line parseLine(String inputStr) {
         String[] coordinatePairs = inputStr.split("->", 2);
         String[] coordinates1 = coordinatePairs[0].split(",",2);
         String[] coordinates2 = coordinatePairs[1].split(",",2);
