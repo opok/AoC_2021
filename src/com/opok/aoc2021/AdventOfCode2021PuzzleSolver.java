@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public class AdventOfCode2021PuzzleSolver {
@@ -18,35 +19,21 @@ public class AdventOfCode2021PuzzleSolver {
     }
 
     private static PuzzleSolver createPuzzleSolver(String task) {
-        switch (task) {
-            case "1a" -> {
-                return new Puzzle1a();
-            }
-            case "1b" -> {
-                return new Puzzle1b();
-            }
-            case "2a" -> {
-                return new Puzzle2a();
-            }
-            case "2b" -> {
-                return new Puzzle2b();
-            }
-            case "3a" -> {
-                return new Puzzle3a();
-            }
-            case "3b" -> {
-                return new Puzzle3b();
-            }
-            case "4a" -> {
-                return new Puzzle4a();
-            }
-            case "4b" -> {
-                return new Puzzle4b();
-            }
-            case "5a" -> {
-                return new Puzzle5a();
-            }
-            default -> throw new UnsupportedOperationException();
+        try {
+            return (PuzzleSolver) Class
+                    .forName("com.opok.aoc2021.Puzzle" + task)
+                    .getDeclaredConstructor()
+                    .newInstance();
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
